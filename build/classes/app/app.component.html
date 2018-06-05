@@ -1,0 +1,83 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align: center">
+	<h1>Welcome to {{ title }}! from {{country}}</h1>
+	<img width="300" alt="Mobile Logo" src="./images/mw.jpg">
+</div>
+<h2>
+	<div *ngIf="country=='India'">Indias Leading Mobile Store</div>
+	<div *ngIf="country!='India'">International Leading Mobile Store
+	</div>
+</h2>
+<Form>
+	Country: <input name="country" [(ngModel)]="country" />
+</Form>
+<ul>
+	<li>
+		<h2>
+			<a rel="noopener" [routerLink]="['/MobileList']">Latest Mobiles</a>
+		</h2>
+	</li>
+	<li>
+		<h2>
+			<a rel="noopener" [routerLink]="['Search']">Search Mobile</a>
+		</h2>
+	</li>
+	<li>
+		<h2>
+			<a rel="noopener" [routerLink]="['/AddMobile']">Add Mobile</a>
+		</h2>
+	</li>
+	<li>
+		<h2>
+			<a rel="noopener" [routerLink]="['/AddUser']">Add User</a>
+		</h2>
+	</li>
+	<li>
+		<h2>
+			<a rel="noopener" [routerLink]="['/UserDetailService']">Display
+				user from normal service</a>
+		</h2>
+	</li>
+	<li>
+		<h2>
+			<a rel="noopener" [routerLink]="['/UserListJson']">Display user
+				from JSON Service</a>
+		</h2>
+	</li>
+	<li>
+		<h2>
+			<a rel="noopener" [routerLink]="['/UserRest']">Display user from
+				Rest Service</a>
+		</h2>
+	</li>
+	<li>
+		<h2>
+			<a rel="noopener" [routerLink]="['/Demo']">Contact Help Desk</a>
+		</h2>
+	</li>
+</ul>
+<router-outlet></router-outlet>
+`
+
+<li *ngIf="isLoggedIn;then logout else login"></li>
+<ng-template #logout> <a href="#">Click here to Logout</a></ng-template>
+<ng-template #login> <a href="#">Click here to Login</a></ng-template>
+
+<!-- <div *ngFor = 'let number of numbers'> 
+   <div *ngIf="number%2==0">
+    <ul> 
+      <li>{{number}}</li>        
+   </ul>
+   </div> 
+</div>  -->
+
+<!-- <div *ngFor = 'let student of students'> 
+   <ul> 
+      <li>{{student.ID}}</li> 
+      <li>{{student.Name}}</li> 
+   </ul> 
+</div>  -->
+
+
+
+

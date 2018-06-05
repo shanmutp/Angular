@@ -1,0 +1,63 @@
+{{printModel}} Mobile Code State : {{codeVar.className}}
+<div class="container" [hidden]="submitStatus">
+	<h1>Add Mobile</h1>
+	<form #mobileForm="ngForm" (ngSubmit)="onSubmit()">
+		<div class="form-group">
+			<label for="code">Mobile Code</label> <input name="mobileCode"
+				type="Number" class="form-control" id="code"
+				[(ngModel)]="model.mobileCode" required #codeVar="ngModel">
+			<div [hidden]="codeVar.valid || codeVar.pristine"
+				class="alert alert-danger">Mobile Code is required</div>
+		</div>
+
+		<div class="form-group">
+			<label for="brand">Mobile Brand</label> <select class="form-control"
+				id="brand" required [(ngModel)]="model.brandName" name="brandName">
+				<option *ngFor="let brand of brand" [value]="brand">{{brand}}</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="price">Mobile Price</label> <input type="text"
+				class="form-control" [(ngModel)]="model.price" name="price"
+				id="price" required #price="ngModel" minlength="3" maxlength="5">
+			<div *ngIf="price.invalid && (price.dirty || price.touched)"
+				class="alert alert-danger">
+				<div *ngIf="price.errors.required">Price is required.</div>
+				<div *ngIf="price.errors.minlength">Should be atleast 3
+					digits.</div>
+				<div *ngIf="price.errors.maxlength">Cannot exceed 5 digits.</div>
+				<!-- <div *ngIf="price.errors.forbiddenName">Name cannot be Bob.</div> -->
+
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="available">Available</label>
+			<div class="form-group">
+				<input type="radio" name="isAvailable"
+					[(ngModel)]="model.isAvailable" value="Yes"> Yes<br> <input
+					type="radio" name="isAvailable" [(ngModel)]="model.isAvailable"
+					value="No"> No<br>
+			</div>
+		</div>
+
+
+		<button type="submit" class="btn btn-success"
+			[disabled]="!mobileForm.form.valid">Submit</button>
+	</form>
+</div>
+<div [hidden]="!submitStatus">
+	<h2>You submitted the following:</h2>
+	<div class="row">
+		<div class="col-xs-3">Brand Name</div>
+		<div class="col-xs-9  pull-left">{{ model.brandName}}</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3">Price</div>
+		<div class="col-xs-9  pull-left">{{ model.price}}</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3">Mobile Code</div>
+		<div class="col-xs-9  pull-left">{{ model.mobileCode}}</div>
+	</div>
+</div>
