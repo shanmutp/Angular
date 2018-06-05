@@ -1,0 +1,31 @@
+
+<div class="container">
+	<h1>Add User</h1>
+	<form #userForm="ngForm" (ngSubmit)="onSubmit()">
+		<div class="form-group">
+			<label for="emailId">User Email</label> <input name="emailId"
+				type="email" class="form-control" id="emailId"
+				[(ngModel)]="model.emailId" required #emailId="ngModel">
+
+		</div>
+		<div class="form-group">
+			<label for="name">Password</label> <input type="password"
+				class="form-control" id="password" required
+				[(ngModel)]="model.password" name="password" #password="ngModel">
+			<div [hidden]="password.valid || password.pristine"
+				class="alert alert-danger">Password is required</div>
+		</div>
+		<div class="form-group">
+			<label for="name">Confirm Password</label> <input type="password"
+				class="form-control" id="confirmPassword" required
+				validateEqual="password" [(ngModel)]="model.confirmPassword"
+				name="confirmPassword" #confirmPassword="ngModel">
+			<div [hidden]="confirmPassword.valid || confirmPassword.pristine"
+				class="alert alert-danger">Passwords did not match</div>
+		</div>
+		<button type="submit" class="btn btn-success"
+			[disabled]="!userForm.form.valid">Submit</button>
+	</form>
+</div>
+{{model}}
+<!-- <app-display-user [userModel]="model"></app-display-user> -->
